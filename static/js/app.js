@@ -55,12 +55,18 @@ function renderWeather(res) {
 }
 
 function clearContainer(container) {
-  // container.innerHTML = '';
   let child = container.lastElementChild;
   while (child) {
     container.removeChild(child);
     child = container.lastElementChild;
   }
+}
+
+const mapImage = {
+  'Clear': 'sun',
+  'Rain': 'rain',
+  'Snow': 'snow',
+  'Clouds': 'cloud'
 }
 
 function weatherTemplate({
@@ -72,8 +78,8 @@ function weatherTemplate({
      <div class="col s2">
                 <div class="card teal lighten-4">
                     <div class="card-content black-text">
-                        <span class="card-title">Mon <img class="responsive-img" src="static/image/cloud.png"></span>
-                        <p>${dt_txt || ""}</p>
+                        <span class="card-title">Mon <img class="responsive-img" src="static/image/${mapImage[main]}.png"></span>
+                        <p>${dt_txt.slice(0, 11) || ""}</p>
                         <p>${temp} °C</p>
                         <p>${description}</p>
                     </div>
