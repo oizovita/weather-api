@@ -1,0 +1,9 @@
+.weather-container .row .col.s2  {
+    width: 13.666667%;
+}
+.weather-container .card .card-content {
+    padding: 20px;
+}
+.weather-container .card .card-title {
+    font-size: 36px;
+}

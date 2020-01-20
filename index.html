@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" , href="static/css/style.css">
+</head>
+<body>
+<nav class="teal darken-1">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Weather</a>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col offset-l3 s6">
+            <h2 class="header">Search</h2>
+            <div class="card horizontal">
+                <div class="card-stacked">
+                    <form name="weatherForm">
+                        <div class="card-content">
+                            <div class="input-field">
+                                <input placeholder="Kiev" id="city" name="city" type="text" class="validate">
+                                <label class="active" for="city">City</label>
+                            </div>
+                        </div>
+                        <div class="card-action">
+                            <button type="submit" class="waves-effect waves-light btn"><i class="material-icons right">send</i>button</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="weather-container">
+    <div class="container">
+        <div class="row">
+            <div class="col s2">
+                <div class="card teal lighten-4">
+                    <div class="card-content black-text">
+                        <span class="card-title">Mon <img class="responsive-img" src="static/image/cloud.png"></span>
+                        <p>2020-01-20</p>
+                        <p>1.58 °C</p>
+                        <p>Overcast clouds</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="static/js/app.js"></script>
+</body>
+</html>
