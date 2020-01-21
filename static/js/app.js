@@ -12,10 +12,10 @@ async function get(url, cb) {
 
 const weatherService = (function() {
   const appid = "730f1440aa7546a8284cbe2314a2b0eb";
-  const apiUrl = "http://api.openweathermap.org/data/2.5";
+  const apiUrl = "https://api.openweathermap.org/data/2.5";
 
   return {
-    forecast(city = "kiev", cb) {
+    forecast(city, cb) {
       get(`${apiUrl}/forecast?q=${city}&units=metric&appid=${appid}`, cb);
     }
   };
