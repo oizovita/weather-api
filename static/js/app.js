@@ -34,7 +34,29 @@ function getResponse(err, res) {
     return;
   }
 
-  renderWeather(res.list);
+  renderWeather(clearData(res.list));
+}
+
+function clearData(data) {
+  let clearedData = data.reduce((acc, value) => {
+    acc[value["dt_txt"].slice(0, 10)] = value;
+    return acc;
+  }, {});
+  let date = new Date();
+  date.setDate(date.getDate() + 6);
+  clearedData[
+    date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
+  ] =
+    clearedData[
+      date.getFullYear() +
+        "-" +
+        date.getMonth() +
+        1 +
+        "-" +
+        (date.getDate() - 1)
+    ];
+
+  return clearedData;
 }
 
 function renderWeather(res) {
@@ -43,13 +65,10 @@ function renderWeather(res) {
     clearContainer(weatherContainer);
   }
   let fragment = "";
-
-
-
-  res.forEach(weatherItem => {
-    const el = weatherTemplate(weatherItem);
+  for (key in res) {
+    const el = weatherTemplate(key, res[key]);
     fragment += el;
-  });
+  }
 
   weatherContainer.insertAdjacentHTML("afterbegin", fragment);
 }
@@ -62,28 +81,37 @@ function clearContainer(container) {
   }
 }
 
-const mapImage = {
-  'Clear': 'sun',
-  'Rain': 'rain',
-  'Snow': 'snow',
-  'Clouds': 'cloud'
+function getWeekDay(date) {
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[date.getDay()];
 }
 
-function weatherTemplate({
-  main: { temp },
-  weather: [{ main, description }],
-  dt_txt
-}) {
+const mapImage = {
+  Clear: "sun",
+  Rain: "rain",
+  Snow: "snow",
+  Clouds: "cloud"
+};
+
+function weatherTemplate(
+  key,
+  { main: { temp }, weather: [{ main, description }] }
+) {
+  let date = new Date(key);
   return `
      <div class="col s2">
-                <div class="card teal lighten-4">
-                    <div class="card-content black-text">
-                        <span class="card-title">Mon <img class="responsive-img" src="static/image/${mapImage[main]}.png"></span>
-                        <p>${dt_txt.slice(0, 11) || ""}</p>
-                        <p>${temp} °C</p>
-                        <p>${description}</p>
-                    </div>
-                </div>
+        <div class="card teal lighten-4">
+            <div class="card-content black-text">
+                <span class="card-title">${getWeekDay(
+                  date
+                )} <img class="responsive-img" src="static/image/${
+    mapImage[main]
+  }.png"></span>
+                <p>${key || ""}</p>
+                <p>${temp} °C</p>
+                <p>${description}</p>
             </div>
+        </div>
+     </div>
   `;
 }
