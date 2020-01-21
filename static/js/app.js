@@ -102,11 +102,9 @@ function weatherTemplate(
      <div class="col s2">
         <div class="card teal lighten-4">
             <div class="card-content black-text">
-                <span class="card-title">${getWeekDay(
-                  date
-                )} <img class="responsive-img" src="static/image/${
-    mapImage[main]
-  }.png"></span>
+                <span class="card-title">${getWeekDay(date)} 
+                    <img class="responsive-img" src="static/image/${mapImage[main]}.png">
+                </span>
                 <p>${key || ""}</p>
                 <p>${temp} °C</p>
                 <p>${description}</p>
