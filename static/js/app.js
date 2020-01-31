@@ -42,24 +42,26 @@ function clearData(data) {
     acc[value["dt_txt"].slice(0, 10)] = value;
     return acc;
   }, {});
+
   let date = new Date();
+
   date.setDate(date.getDate() + 6);
+  month = (date.getMonth() + 1) < 9 ? `0${(date.getMonth() + 1)}` : (date.getMonth() + 1);
+  day = date.getDate() < 9 ? `0${date.getDate()}` : date.getDate();
+  lastDay = date.getDate() - 1  < 9 ? `0${date.getDate() - 1}` : date.getDate() - 1;
   clearedData[
-    date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
+    date.getFullYear() + "-" + month + "-" + day
   ] =
     clearedData[
-      date.getFullYear() +
-        "-" +
-        date.getMonth() +
-        1 +
-        "-" +
-        (date.getDate() - 1)
+      date.getFullYear() + "-" + month + "-" + lastDay
     ];
-
+  console.log(date.getMonth());
+  console.log(clearedData);
   return clearedData;
 }
 
 function renderWeather(res) {
+
   const weatherContainer = document.querySelector(".weather-container .row");
   if (weatherContainer.children.length) {
     clearContainer(weatherContainer);
