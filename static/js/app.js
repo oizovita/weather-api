@@ -46,8 +46,8 @@ function clearData(data) {
   let date = new Date();
 
   date.setDate(date.getDate() + 6);
-  month = (date.getMonth() + 1) < 9 ? `0${(date.getMonth() + 1)}` : (date.getMonth() + 1);
-  day = date.getDate() < 9 ? `0${date.getDate()}` : date.getDate();
+  month = (date.getMonth() + 1) < 10 ? `0${(date.getMonth() + 1)}` : (date.getMonth() + 1);
+  day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
   lastDay = date.getDate() - 1  < 9 ? `0${date.getDate() - 1}` : date.getDate() - 1;
   clearedData[
     date.getFullYear() + "-" + month + "-" + day
@@ -55,8 +55,7 @@ function clearData(data) {
     clearedData[
       date.getFullYear() + "-" + month + "-" + lastDay
     ];
-  console.log(date.getMonth());
-  console.log(clearedData);
+  
   return clearedData;
 }
 
